@@ -1,0 +1,39 @@
+{
+  "_format": "hh3-sol-build-info-1",
+  "id": "solc-0_8_28-27506b37ecd3e1fb64995647f8d354458187b033",
+  "solcVersion": "0.8.28",
+  "solcLongVersion": "0.8.28+commit.7893614a",
+  "userSourceNameMap": {
+    "contracts/Counter.sol": "project/contracts/Counter.sol",
+    "contracts/Reward.sol": "project/contracts/Reward.sol"
+  },
+  "input": {
+    "language": "Solidity",
+    "settings": {
+      "evmVersion": "cancun",
+      "outputSelection": {
+        "*": {
+          "": [
+            "ast"
+          ],
+          "*": [
+            "abi",
+            "evm.bytecode",
+            "evm.deployedBytecode",
+            "evm.methodIdentifiers",
+            "metadata"
+          ]
+        }
+      },
+      "remappings": []
+    },
+    "sources": {
+      "project/contracts/Counter.sol": {
+        "content": "// SPDX-License-Identifier: UNLICENSED\npragma solidity ^0.8.28;\n\ncontract Counter {\n  uint public x;\n\n  event Increment(uint by);\n\n  function inc() public {\n    x++;\n    emit Increment(1);\n  }\n\n  function incBy(uint by) public {\n    require(by > 0, \"incBy: increment should be positive\");\n    x += by;\n    emit Increment(by);\n  }\n}\n"
+      },
+      "project/contracts/Reward.sol": {
+        "content": "// contracts/Reward.sol\r\n// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.28;\r\n\r\ncontract Reward {\r\n    event RewardSent(address indexed to, uint256 amount);\r\n\r\n    function sendReward(address to, uint256 amount) public {\r\n        // just a dummy function for now\r\n        emit RewardSent(to, amount);\r\n    }\r\n}\r\n"
+      }
+    }
+  }
+}
