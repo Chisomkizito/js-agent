@@ -1,174 +1,186 @@
-# 🤖 JS (JavaScript Agent)  
+🤖 JS Agent (JavaScript Agent)
 
-A Web3 development platform that **revolutionizes how developers work and get rewarded**.  
-This lightweight AI-powered prototype (built with **JavaScript + Node.js**) demonstrates how to structure, run, and extend an **AI Oracle/Agent** that integrates **Avalanche security features** for rewarding open-source contributors.  
+A lightweight AI-powered Web3 dashboard built with JavaScript + React. JS Agent demonstrates a privacy-first, Avalanche-integrated developer environment where contributors can connect wallets, interact with an AI Oracle, and explore secure, incentivized workflows.
 
----
-
-## 📌 Project Structure  
-
-```
-
-js-agent/
-│── index.js        # Main entry point
-│── aiOracle.js     # Core AI Oracle logic
-│── package.json    # Project metadata & dependencies
-│── .gitignore      # Ignored files (e.g., node\_modules)
-│── README.md       # Documentation
-
-````
 
 ---
 
-## 🚀 Features  
+📌 Project Structure
 
-- **Node.js Based** → Simple and lightweight setup  
-- **AI-Powered Oracle** → Placeholder logic for contribution validation  
-- **Avalanche Security** → Prototype reward system for developers  
-- **Tokenized Development** → Future plan: developers earn for commits, fixes, and PRs  
-- **Modular Design** → Core logic separated for easy extension  
-- **Beginner-Friendly** → Works with just Node.js + NPM basics  
+js-agent-ui/
 
----
+│── src/
+│   ├── App.js        # Main React UI and AI Oracle simulation
+│   ├── index.js      # Entry point
+│   ├── index.css     # Global styles
+│── package.json       # Project metadata & dependencies
+│── README.md          # Documentation
+│── tailwind.config.js # Tailwind CSS config
 
-## 🛡 Problem It Solves  
-
-Open-source developers create valuable code but are often **not fairly compensated**, making sustainability difficult.  
-JS-Agent tackles this by:  
-
-✔ Tracking contributions  
-✔ Validating them with AI Oracle logic  
-✔ Rewarding contributors securely using Avalanche  
 
 ---
 
-## 🛠️ Setup & Installation  
+🚀 Features
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/your-username/js-agent.git
-   cd js-agent
-````
+React + Tailwind UI → Lightweight, modular, and responsive dashboard
 
-2. **Install dependencies**
+Wallet Connection → Securely connect MetaMask wallets
 
-   ```bash
-   npm install
-   ```
+AI Oracle Simulation → Placeholder logic for private, developer-focused interactions
 
-3. **Run the project**
+Avalanche Privacy & Security → Prototype interactions designed for privacy-focused developer workflows
 
-   ```bash
-   node index.js
-   ```
+Extensible Dashboard → Easily add plugins, APIs, or backend integrations
+
+Modern UX → Rounded containers, shadows, hover effects, and improved typography/color palette
+
+
 
 ---
 
-## 📜 Usage
+🛡 Problem It Solves
 
-* `index.js` = **Entry point**
-* `aiOracle.js` = **AI oracle/agent logic**
-* Modify `aiOracle.js` to extend with:
+Open-source and Web3 developers often lack secure, privacy-focused tools and proper incentives for contributions.
 
-  * API integrations
-  * Decision-making logic
-  * Database calls
+JS Agent addresses this by:
+✔ Simulating secure interactions via an AI Oracle
+✔ Connecting wallets for private, verifiable participation
+✔ Laying the foundation for future Avalanche-based reward systems
 
----
-
-## 📂 Example Code
-
-**index.js**
-
-```js
-const aiOracle = require("./aiOracle");
-
-console.log("🚀 JS (JavaScript) Agent starting...");
-
-aiOracle.ask("What is JavaScript?")
-  .then(response => {
-    console.log("🧠 Oracle says:", response);
-  })
-  .catch(err => {
-    console.error("❌ Error:", err);
-  });
-```
-
-**aiOracle.js**
-
-```js
-module.exports = {
-  ask: async (question) => {
-    return `You asked: "${question}". This is a placeholder response from the Oracle.`;
-  }
-};
-```
 
 ---
 
-## 🔒 Avalanche Reward Prototype
+🛠️ Setup & Installation
 
-Here’s a **proof-of-concept script** that simulates rewarding a developer using Avalanche:
+1. Clone the repository
 
-```js
-// prototype/reward.js
+
+
+git clone https://github.com/your-username/js-agent-ui.git
+cd js-agent-ui
+
+2. Install dependencies
+
+
+
+npm install
+
+3. Run the project
+
+
+
+npm start
+
+Open http://localhost:3000 to view the dashboard.
+
+
+---
+
+📜 Usage
+
+App.js → Main dashboard interface + AI Oracle simulation
+
+index.js → Entry point rendering React app
+
+index.css → Global styles; modify for colors, fonts, and layout
+
+
+Interactions:
+
+Connect Wallet → Connect MetaMask wallet
+
+Explore Dashboard → Trigger AI Oracle responses
+
+
+
+---
+
+📂 Example Code
+
+App.js snippet:
+
+import React, { useState } from "react";
 import { ethers } from "ethers";
-import { Avalanche } from "avalanche";
 
-// Connect to Avalanche
-const ava = new Avalanche("api.avax.network", 443, "https");
+function App() {
+  const [walletAddress, setWalletAddress] = useState("");
+  const [oracleResponse, setOracleResponse] = useState("");
 
-// Example reward function
-async function rewardDeveloper(devAddress, amount) {
-  try {
-    const provider = new ethers.providers.JsonRpcProvider(ava.getURL());
-    const signer = provider.getSigner(); // replace with funded account
-    const tx = await signer.sendTransaction({
-      to: devAddress,
-      value: ethers.utils.parseEther(amount.toString())
-    });
+  const handleConnectWallet = async () => {
+    if (window.ethereum) {
+      const accounts = await window.ethereum.request({ method: "eth_requestAccounts" });
+      setWalletAddress(accounts[0]);
+    }
+  };
 
-    console.log(`✅ Reward sent to ${devAddress}:`, tx.hash);
-  } catch (err) {
-    console.error("❌ Reward failed:", err);
-  }
+  const handleExploreDashboard = () => {
+    setOracleResponse("🤖 JS Agent says: Hello Web3 Developer!");
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center p-4">
+      <h1 className="text-4xl font-bold mb-4">⚡ JS Agent UI</h1>
+      <p className="text-lg text-gray-300 mb-6">
+        Privacy-first dashboard for Web3 developers on Avalanche
+      </p>
+
+      <div className="space-x-4 mb-6 bg-gray-800 p-6 rounded-xl shadow-lg">
+        <button className="bg-blue-600 px-4 py-2 rounded-lg hover:bg-blue-500" onClick={handleConnectWallet}>
+          Connect Wallet
+        </button>
+        <button className="bg-green-600 px-4 py-2 rounded-lg hover:bg-green-500" onClick={handleExploreDashboard}>
+          Explore Dashboard
+        </button>
+      </div>
+
+      {walletAddress && <p className="mb-2 text-yellow-400">Connected Wallet: {walletAddress}</p>}
+      {oracleResponse && <p className="text-green-400 font-medium">{oracleResponse}</p>}
+    </div>
+  );
 }
 
-rewardDeveloper("0x1234abcd5678ef...", 0.5);
-```
+export default App;
+
 
 ---
 
-## 📖 Future Improvements
+🔒 Avalanche Integration (Prototype)
 
-* Add **real AI API integration** (e.g., OpenAI, HuggingFace)
-* Deploy **smart contract for auto-rewards** on Avalanche
-* Build **VSCode/GitHub plugins** for live reward tracking
-* Store contributions + rewards in a **database**
-* Full **zkVM-based decentralization** roadmap (Q1 2026)
+This UI lays the foundation for privacy-focused developer interactions on Avalanche.
+Future roadmap includes:
 
----
+Integrating encrypted EERC20 tokens
 
-## 🛠 Roadmap
+Auto-rewarding contributors
 
-* [x] Define project vision + problem
-* [x] Setup repo and prototype structure
-* [ ] Add Avalanche reward integration
-* [ ] AI Oracle verification for contributions
-* [ ] Smart contract reward automation
-* [ ] Frontend dashboard for developers
+Privacy-first SDKs & APIs
+
+
 
 ---
 
-## 👨‍💻 Author
+📖 Future Improvements
 
-**Kizito**
+Real AI Oracle integration (OpenAI, HuggingFace)
+
+Smart contract reward automation on Avalanche
+
+Full dashboard with analytics & plugin support
+
+Database storage for contributions and rewards
+
+
+
+---
+
+👨‍💻 Author
+
+Kizito
 🔗 Tech Enthusiast | Web3 & AI Developer | Community Builder
 
+
 ---
 
-## 📝 License
+📝 License
 
-This project is licensed under the **MIT License** – free to use, modify, and distribute.
-
-
+MIT License – free to use, modify, and distribute
